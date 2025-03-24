@@ -42,7 +42,7 @@ namespace MW3_Server_Maker
         {
             _path = path;
             HostName = "MVSoft";
-            MapRotation = "Default";
+            MapRotation = "default";
             MaxClients = "18";
             Password = "";
             PrivateClients = "";
@@ -54,8 +54,8 @@ namespace MW3_Server_Maker
             Inactivity = "0";
             KickBanTime = "0";
             FloodProtect = "1";
-            MaxPing = "0";
-            ClanWebsite = "https://example.com/";
+            MaxPing = "500";
+            ClanWebsite = "https://github.com/soheilmv";
             Discord = "https://discord.gg/HbG3kQ5";
             ServerFullMessage = "The server is full. Come back later.";
             BanByGuid = "0";
@@ -296,8 +296,6 @@ namespace MW3_Server_Maker
                         sw.WriteLine(cmd);
                     }
                 }
-                sw.WriteLine("//map rotation");
-                sw.WriteLine("start_map_rotate");
             }
             File.WriteAllText(_path, sb.ToString());
         }

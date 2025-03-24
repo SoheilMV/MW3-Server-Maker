@@ -2,7 +2,7 @@
 
 namespace MW3_Server_Maker
 {
-    internal static class Convertor
+    internal static class Utils
     {
         #region MAP
 
@@ -151,6 +151,79 @@ namespace MW3_Server_Maker
                 return "mp_vilage";
         }
 
+        public static string FindMap(string map)
+        {
+            map = map.ToLower();
+            if (map == "mp_alpha")
+                return "Lockdown";
+            else if (map == "mp_bootleg")
+                return "Bootleg";
+            else if (map == "mp_bravo")
+                return "Mission";
+            else if (map == "mp_carbon")
+                return "Carbon";
+            else if (map == "mp_dome" )
+                return "Dome";
+            else if (map == "mp_exchange")
+                return "Downturn";
+            else if (map == "mp_hardhat")
+                return "Hardhat";
+            else if (map == "mp_interchange")
+                return "Interchange";
+            else if (map == "mp_lambeth")
+                return "Fallen";
+            else if (map == "mp_mogadishu")
+                return "Bakaara";
+            else if (map == "mp_paris")
+                return "Resistance";
+            else if (map == "mp_plaza2")
+                return "Arkaden";
+            else if (map == "mp_radar")
+                return "Outpost";
+            else if (map == "mp_seatown")
+                return "Seatown";
+            else if (map == "mp_underground")
+                return "Underground";
+            else if (map == "mp_aground_ss")
+                return "Aground";
+            else if (map == "mp_burn_ss")
+                return "U-Turn";
+            else if (map == "mp_cement")
+                return "Foundation";
+            else if (map == "mp_courtyard_ss")
+                return "Erosion";
+            else if (map == "mp_crosswalk_ss")
+                return "Intersection";
+            else if (map == "mp_hillside_ss")
+                return "Getaway";
+            else if (map == "mp_italy")
+                return "Piazza";
+            else if (map == "mp_meteora")
+                return "Sanctuary";
+            else if (map == "mp_morningwood")
+                return "Black Box";
+            else if (map == "mp_nola")
+                return "Parish";
+            else if (map == "mp_overwatch")
+                return "Overwatch";
+            else if (map == "mp_park")
+                return "Liberation";
+            else if (map == "mp_qadeem")
+                return "Oasis";
+            else if (map == "mp_restrepo_ss")
+                return "Lookout";
+            else if (map == "mp_roughneck")
+                return "Roughneck";
+            else if (map == "mp_shipbreaker")
+                return "Shipbreaker";
+            else if (map == "mp_six_ss")
+                return "Vortex";
+            else if (map == "mp_terminal_cls")
+                return "Terminal";
+            else //if (map == "mp_vilage")
+                return "Village";
+        }
+
         #endregion
 
         #region MOD
@@ -190,38 +263,73 @@ namespace MW3_Server_Maker
                 return ModType.TeamJuggernaut;
         }
 
-        public static string Mod(ModType mod)
+        public static string Mod(ModType mod, bool hardCore)
         {
+            var type = (hardCore ? "Hardcore" : "Core");
             if (mod == ModType.TeamDeathmatch)
-                return "TDM_default";
+                return "TDM-" + type;
             else if (mod == ModType.Domination)
-                return "DOM_default";
+                return "DOM-" + type;
             else if (mod == ModType.CaptureTheFlag)
-                return "CTF_default";
+                return "CTF-" + type;
             else if (mod == ModType.DropZone)
-                return "DZ_default";
+                return "DZ-" + type;
             else if (mod == ModType.FreeForAll)
-                return "FFA_default";
+                return "FFA-" + type;
             else if (mod == ModType.GunGame)
-                return "GG_default";
+                return "GG-" + type;
             else if (mod == ModType.Headquarters)
-                return "HQ_default";
+                return "HQ-" + type;
             else if (mod == ModType.Infected)
-                return "INF_default";
+                return "INF-" + type;
             else if (mod == ModType.Juggernaut)
-                return "JUG_default";
+                return "JUG-" + type;
             else if (mod == ModType.KillConfirmed)
-                return "KC_default";
+                return "KC-" + type;
             else if (mod == ModType.OneInTheChamber)
-                return "OIC_default";
+                return "OIC-" + type;
             else if (mod == ModType.Sabotage)
-                return "SAB_default";
+                return "SAB-" + type;
             else if (mod == ModType.SearchAndDestroy)
-                return "SD_default";
+                return "SD-" + type;
             else if (mod == ModType.TeamDefender)
-                return "TDEF_default";
+                return "TDEF-" + type;
             else
-                return "TJ_default";
+                return "TJ-" + type;
+        }
+
+        public static string FindMod(string mod)
+        {
+            if (mod.StartsWith("TDM"))
+                return "Team Deathmatch";
+            else if (mod.StartsWith("DOM"))
+                return "Domination";
+            else if (mod.StartsWith("CTF"))
+                return "Capture The Flag";
+            else if (mod.StartsWith("DZ"))
+                return "Drop Zone";
+            else if (mod.StartsWith("FFA"))
+                return "Free For All";
+            else if (mod.StartsWith("GG"))
+                return "Gun Game";
+            else if (mod.StartsWith("HQ"))
+                return "Headquarters";
+            else if (mod.StartsWith("INF"))
+                return "Infected";
+            else if (mod.StartsWith("JUG"))
+                return "Juggernaut";
+            else if (mod.StartsWith("KC"))
+                return "Kill Confirmed";
+            else if (mod.StartsWith("OIC"))
+                return "One In The Chamber";
+            else if (mod.StartsWith("SAB"))
+                return "Sabotage";
+            else if (mod.StartsWith("SD"))
+                return "Search And Destroy";
+            else if (mod.StartsWith("TDEF"))
+                return "Team Defender";
+            else //if (mod.StartsWith("TJ"))
+                return "Team Juggernaut";
         }
 
         #endregion

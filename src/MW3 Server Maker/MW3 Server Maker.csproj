@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Default.cs" />
-    <Compile Include="Utility\Convertor.cs" />
+    <Compile Include="Utility\Utils.cs" />
     <Compile Include="Utility\IniReader.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Form1.cs">

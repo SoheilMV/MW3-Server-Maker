@@ -46,6 +46,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAbout = new MetroFramework.Controls.MetroButton();
+            this.cb_hardCore = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +59,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(31, 287);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(444, 250);
+            this.pictureBox1.Size = new System.Drawing.Size(444, 249);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -81,10 +84,10 @@
             "Team Defender",
             "Team Deathmatch",
             "Team Juggernaut"});
-            this.cb_mod.Location = new System.Drawing.Point(483, 544);
+            this.cb_mod.Location = new System.Drawing.Point(335, 544);
             this.cb_mod.Margin = new System.Windows.Forms.Padding(4);
             this.cb_mod.Name = "cb_mod";
-            this.cb_mod.Size = new System.Drawing.Size(281, 30);
+            this.cb_mod.Size = new System.Drawing.Size(217, 30);
             this.cb_mod.Style = MetroFramework.MetroColorStyle.Lime;
             this.cb_mod.TabIndex = 9;
             this.cb_mod.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -130,10 +133,10 @@
             "Shipbreaker",
             "Vortex",
             "Terminal"});
-            this.cb_map.Location = new System.Drawing.Point(96, 544);
+            this.cb_map.Location = new System.Drawing.Point(79, 544);
             this.cb_map.Margin = new System.Windows.Forms.Padding(4);
             this.cb_map.Name = "cb_map";
-            this.cb_map.Size = new System.Drawing.Size(311, 30);
+            this.cb_map.Size = new System.Drawing.Size(199, 30);
             this.cb_map.Style = MetroFramework.MetroColorStyle.Lime;
             this.cb_map.TabIndex = 8;
             this.cb_map.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -143,13 +146,13 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(416, 550);
+            this.metroLabel2.Location = new System.Drawing.Point(286, 550);
             this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(44, 20);
+            this.metroLabel2.Size = new System.Drawing.Size(41, 20);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroLabel2.TabIndex = 7;
-            this.metroLabel2.Text = "Mod :";
+            this.metroLabel2.Text = "Mod ";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // metroLabel1
@@ -158,15 +161,15 @@
             this.metroLabel1.Location = new System.Drawing.Point(31, 550);
             this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(43, 20);
+            this.metroLabel1.Size = new System.Drawing.Size(40, 20);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroLabel1.TabIndex = 6;
-            this.metroLabel1.Text = "Map :";
+            this.metroLabel1.Text = "Map ";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // btn_clear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(332, 598);
+            this.btn_clear.Location = new System.Drawing.Point(333, 598);
             this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(143, 43);
@@ -179,20 +182,20 @@
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(181, 598);
+            this.btn_add.Location = new System.Drawing.Point(182, 598);
             this.btn_add.Margin = new System.Windows.Forms.Padding(4);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(143, 43);
             this.btn_add.Style = MetroFramework.MetroColorStyle.Lime;
             this.btn_add.TabIndex = 13;
-            this.btn_add.Text = "Add To List";
+            this.btn_add.Text = "Add";
             this.btn_add.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btn_add.UseSelectable = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(483, 598);
+            this.btn_start.Location = new System.Drawing.Point(31, 598);
             this.btn_start.Margin = new System.Windows.Forms.Padding(4);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(143, 43);
@@ -205,7 +208,7 @@
             // 
             // btn_options
             // 
-            this.btn_options.Location = new System.Drawing.Point(31, 598);
+            this.btn_options.Location = new System.Drawing.Point(674, 598);
             this.btn_options.Margin = new System.Windows.Forms.Padding(4);
             this.btn_options.Name = "btn_options";
             this.btn_options.Size = new System.Drawing.Size(143, 43);
@@ -219,13 +222,13 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(773, 550);
+            this.metroLabel3.Location = new System.Drawing.Point(789, 550);
             this.metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(59, 20);
+            this.metroLabel3.Size = new System.Drawing.Size(60, 20);
             this.metroLabel3.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroLabel3.TabIndex = 16;
-            this.metroLabel3.Text = "Priority :";
+            this.metroLabel3.Text = "Priority  ";
             this.metroLabel3.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // cb_priority
@@ -244,10 +247,10 @@
             "800",
             "900",
             "1000"});
-            this.cb_priority.Location = new System.Drawing.Point(859, 544);
+            this.cb_priority.Location = new System.Drawing.Point(856, 544);
             this.cb_priority.Margin = new System.Windows.Forms.Padding(4);
             this.cb_priority.Name = "cb_priority";
-            this.cb_priority.Size = new System.Drawing.Size(108, 30);
+            this.cb_priority.Size = new System.Drawing.Size(111, 30);
             this.cb_priority.Style = MetroFramework.MetroColorStyle.Lime;
             this.cb_priority.TabIndex = 17;
             this.cb_priority.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -270,7 +273,8 @@
             this.listDspl.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.listDspl.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.listDspl.FullRowSelect = true;
             this.listDspl.Location = new System.Drawing.Point(483, 287);
@@ -297,7 +301,7 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Priority";
+            this.columnHeader3.Text = "HardCore";
             this.columnHeader3.Width = 89;
             // 
             // btnAbout
@@ -313,11 +317,47 @@
             this.btnAbout.UseSelectable = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
+            // cb_hardCore
+            // 
+            this.cb_hardCore.FormattingEnabled = true;
+            this.cb_hardCore.ItemHeight = 24;
+            this.cb_hardCore.Items.AddRange(new object[] {
+            "Enable",
+            "Disable"});
+            this.cb_hardCore.Location = new System.Drawing.Point(653, 544);
+            this.cb_hardCore.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_hardCore.Name = "cb_hardCore";
+            this.cb_hardCore.Size = new System.Drawing.Size(128, 30);
+            this.cb_hardCore.Style = MetroFramework.MetroColorStyle.Lime;
+            this.cb_hardCore.TabIndex = 22;
+            this.cb_hardCore.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.cb_hardCore.UseSelectable = true;
+            this.cb_hardCore.SelectedIndexChanged += new System.EventHandler(this.cb_hardCore_SelectedIndexChanged);
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(560, 550);
+            this.metroLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(85, 20);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Orange;
+            this.metroLabel4.TabIndex = 21;
+            this.metroLabel4.Text = "Hard Core   ";
+            this.metroLabel4.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Priority";
+            this.columnHeader4.Width = 89;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(999, 670);
+            this.Controls.Add(this.cb_hardCore);
+            this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.listDspl);
             this.Controls.Add(this.pictureBox2);
@@ -367,6 +407,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private MetroFramework.Controls.MetroButton btnAbout;
+        private MetroFramework.Controls.MetroComboBox cb_hardCore;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 
