@@ -121,6 +121,16 @@ namespace MW3_Server_Maker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Default {
+            get {
+                object obj = ResourceManager.GetObject("Default", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Dome {
@@ -337,6 +347,16 @@ namespace MW3_Server_Maker.Properties {
             get {
                 object obj = ResourceManager.GetObject("Seatown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Server {
+            get {
+                object obj = ResourceManager.GetObject("Server", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

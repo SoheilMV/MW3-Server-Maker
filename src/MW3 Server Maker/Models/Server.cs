@@ -1,144 +1,305 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace MW3_Server_Maker
 {
     internal class Server
     {
-        public List<string> Cammand { get; set; } = new List<string>();
-        public List<string> Script { get; set; } = new List<string>();
-        public string ServerName { get; set; } = "Your Server Name";
-        public int SecureGamePort { get; set; } = 27015;
-        public int MasterPort { get; set; } = 27016;
-        public int OpenGamePort { get; set; } = 27014;
-        public int AuthPort { get; set; } = 8766;
-        public int PrivateClients { get; set; } = 0;
-        public int MaxClient { get; set; } = 18;
-        public string PrivatePassword { get; set; } = string.Empty;
-        public string RconPassword { get; set; } = string.Empty;
-        public string ServerPassword { get; set; } = string.Empty;
-        public int VoiceChat { get; set; } = 1;
-        public int ToggleVoting { get; set; } = 1;
-        public int DeadChat { get; set; } = 1;
-        public int Inactivity { get; set; } = 0;
-        public int KickTime { get; set; } = 0;
-        public ServerType ServerVisibility { get; set; } = ServerType.Lan;
+        private readonly string _path;
+        private List<string> scripts = new List<string>();
+        private List<string> commands = new List<string>();
 
-        public string Create()
+        public string HostName { get; set; }
+        public string MapRotation { get; set; }
+        public string MaxClients { get; set; }
+        public string Password { get; set; }
+        public string PrivateClients { get; set; }
+        public string PrivatePassword { get; set; }
+        public string RconPassword { get; set; }
+        public string Voice { get; set; }
+        public string AllowVote { get; set; }
+        public string DeadChat { get; set; }
+        public string Inactivity { get; set; }
+        public string KickBanTime { get; set; }
+        public string FloodProtect { get; set; }
+        public string MaxPing { get; set; }
+        public string ClanWebsite { get; set; }
+        public string Discord { get; set; }
+        public string ServerFullMessage { get; set; }
+        public string BanByGuid { get; set; }
+        public string BanByIp { get; set; }
+        public string SpecifyServerVisibility { get; set; }
+        public string OpenGamePort { get; set; }
+        public string SecureGamePort { get; set; }
+        public string AuthenticationPort { get; set; }
+        public string MasterServerPort { get; set; }
+
+        public Server(string path)
         {
+            _path = path;
+            HostName = "MVSoft";
+            MapRotation = "Default";
+            MaxClients = "18";
+            Password = "";
+            PrivateClients = "";
+            PrivatePassword = "";
+            RconPassword = "";
+            Voice = "2";
+            AllowVote = "0";
+            DeadChat = "0";
+            Inactivity = "0";
+            KickBanTime = "0";
+            FloodProtect = "1";
+            MaxPing = "0";
+            ClanWebsite = "https://example.com/";
+            Discord = "https://discord.gg/HbG3kQ5";
+            ServerFullMessage = "The server is full. Come back later.";
+            BanByGuid = "0";
+            BanByIp = "0";
+            SpecifyServerVisibility = "1";
+            OpenGamePort = "27015";
+            SecureGamePort = "27016";
+            AuthenticationPort = "8766";
+            MasterServerPort = "27017";
+        }
+
+        public void AddScript(string name)
+        {
+            scripts.Add(name);
+        }
+
+        public void ClearScrips()
+        {
+            scripts.Clear();
+        }
+
+        public void AddCommand(string name)
+        {
+            commands.Add(name);
+        }
+
+        public void ClearCommands()
+        {
+            commands.Clear();
+        }
+
+        public void Read()
+        {
+            if (File.Exists(_path))
+            {
+                string[] lines = File.ReadAllLines(_path);
+                foreach (var line in lines)
+                {
+                    if (!string.IsNullOrEmpty(line) && !line.StartsWith("//"))
+                    {
+                        if (line.Contains("sv_hostname"))
+                        {
+                            var result = Regex.Match(line, "seta sv_hostname \"(.*?)\"");
+                            if (result.Success)
+                                HostName = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_maprotation"))
+                        {
+                            var result = Regex.Match(line, "seta sv_maprotation \"(.*?)\"");
+                            if (result.Success)
+                                MapRotation = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_maxclients"))
+                        {
+                            var result = Regex.Match(line, "seta sv_maxclients \"(.*?)\"");
+                            if (result.Success)
+                                MaxClients = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("g_password"))
+                        {
+                            var result = Regex.Match(line, "seta g_password \"(.*?)\"");
+                            if (result.Success)
+                                Password = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_privateClients"))
+                        {
+                            var result = Regex.Match(line, "seta sv_privateClients \"(.*?)\"");
+                            if (result.Success)
+                                PrivateClients = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_privatePassword"))
+                        {
+                            var result = Regex.Match(line, "seta sv_privatePassword \"(.*?)\"");
+                            if (result.Success)
+                                PrivatePassword = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("rcon_password"))
+                        {
+                            var result = Regex.Match(line, "seta rcon_password \"(.*?)\"");
+                            if (result.Success)
+                                RconPassword = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_voice"))
+                        {
+                            var result = Regex.Match(line, "seta sv_voice \"(.*?)\"");
+                            if (result.Success)
+                                Voice = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("g_allowVote"))
+                        {
+                            var result = Regex.Match(line, "seta g_allowVote \"(.*?)\"");
+                            if (result.Success)
+                                AllowVote = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("g_deadChat"))
+                        {
+                            var result = Regex.Match(line, "seta g_deadChat \"(.*?)\"");
+                            if (result.Success)
+                                DeadChat = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("g_inactivity"))
+                        {
+                            var result = Regex.Match(line, "seta g_inactivity \"(.*?)\"");
+                            if (result.Success)
+                                Inactivity = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_kickBanTime"))
+                        {
+                            var result = Regex.Match(line, "seta sv_kickBanTime \"(.*?)\"");
+                            if (result.Success)
+                                KickBanTime = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_floodProtect"))
+                        {
+                            var result = Regex.Match(line, "seta sv_floodProtect \"(.*?)\"");
+                            if (result.Success)
+                                FloodProtect = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_maxping"))
+                        {
+                            var result = Regex.Match(line, "seta sv_maxping \"(.*?)\"");
+                            if (result.Success)
+                                MaxPing = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_clanWebsite"))
+                        {
+                            var result = Regex.Match(line, "seta sv_clanWebsite \"(.*?)\"");
+                            if (result.Success)
+                                ClanWebsite = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_Discord"))
+                        {
+                            var result = Regex.Match(line, "seta sv_Discord \"(.*?)\"");
+                            if (result.Success)
+                                Discord = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_serverFullMsg"))
+                        {
+                            var result = Regex.Match(line, "seta sv_serverFullMsg \"(.*?)\"");
+                            if (result.Success)
+                                ServerFullMessage = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_ban_by_guid"))
+                        {
+                            var result = Regex.Match(line, "seta sv_ban_by_guid \"(.*?)\"");
+                            if (result.Success)
+                                BanByGuid = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("sv_ban_by_ip"))
+                        {
+                            var result = Regex.Match(line, "seta sv_ban_by_ip \"(.*?)\"");
+                            if (result.Success)
+                                BanByIp = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("dedicated"))
+                        {
+                            var result = Regex.Match(line, "seta dedicated \"(.*?)\"");
+                            if (result.Success)
+                                SpecifyServerVisibility = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("net_queryPort"))
+                        {
+                            var result = Regex.Match(line, "seta net_queryPort \"(.*?)\"");
+                            if (result.Success)
+                                OpenGamePort = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("net_port"))
+                        {
+                            var result = Regex.Match(line, "seta net_port \"(.*?)\"");
+                            if (result.Success)
+                                SecureGamePort = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("net_authPort"))
+                        {
+                            var result = Regex.Match(line, "seta net_authPort \"(.*?)\"");
+                            if (result.Success)
+                                AuthenticationPort = result.Groups[1].Value;
+                        }
+                        else if (line.Contains("net_masterServerPort"))
+                        {
+                            var result = Regex.Match(line, "seta net_masterServerPort \"(.*?)\"");
+                            if (result.Success)
+                                MasterServerPort = result.Groups[1].Value;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Write()
+        {
+            byte[] bytes = Properties.Resources.Server;
+            string content = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+
+            content = content.Replace("<sv_hostname>", HostName.Trim())
+                .Replace("<sv_maprotation>", MapRotation.Trim())
+                .Replace("<sv_maxclients>", MaxClients.Trim())
+                .Replace("<g_password>", Password.Trim())
+                .Replace("<sv_privateClients>", PrivateClients.Trim())
+                .Replace("<sv_privatePassword>", PrivatePassword.Trim())
+                .Replace("<rcon_password>", RconPassword.Trim())
+                .Replace("<sv_voice>", Voice.Trim())
+                .Replace("<g_allowVote>", AllowVote.Trim())
+                .Replace("<g_deadChat>", DeadChat.Trim())
+                .Replace("<g_inactivity>", Inactivity.Trim())
+                .Replace("<sv_kickBanTime>", KickBanTime.Trim())
+                .Replace("<sv_floodProtect>", FloodProtect.Trim())
+                .Replace("<sv_maxping>", MaxPing.Trim())
+                .Replace("<sv_clanWebsite>", ClanWebsite.Trim())
+                .Replace("<sv_Discord>", Discord.Trim())
+                .Replace("<sv_serverFullMsg>", ServerFullMessage.Trim())
+                .Replace("<sv_ban_by_guid>", BanByGuid.Trim())
+                .Replace("<sv_ban_by_ip>", BanByIp.Trim())
+                .Replace("<dedicated>", SpecifyServerVisibility.Trim())
+                .Replace("<net_queryPort>", OpenGamePort.Trim())
+                .Replace("<net_port>", SecureGamePort.Trim())
+                .Replace("<net_authPort>", AuthenticationPort.Trim())
+                .Replace("<net_masterServerPort>", MasterServerPort.Trim());
+
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("// Modern Warfare 3 Server Configuration");
-            sb.AppendLine();
-            sb.AppendLine("//////////////////////////////////////////////////////////");
-            sb.AppendLine("// Server command-line parameters (this section is for documentation only)");
-            sb.AppendLine();
-            sb.AppendLine("// Specify server configuration file (this file)");
-            sb.AppendLine("//+set sv_config \"filename\" (default \"server.cfg\")");
-            sb.AppendLine();
-            sb.AppendLine("// Specify server visibility (1 = LAN, 2 = Internet (default) )");
-            sb.AppendLine("+set dedicated 1");
-            sb.AppendLine();
-            sb.AppendLine("// Open game port (Steam-visible server game port)");
-            sb.AppendLine("+set net_queryPort 27014");
-            sb.AppendLine();
-            sb.AppendLine("// Secure game port");
-            sb.AppendLine("+set net_port 27015");
-            sb.AppendLine();
-            sb.AppendLine("// Steam authentication port");
-            sb.AppendLine("+set net_authPort 8766");
-            sb.AppendLine();
-            sb.AppendLine("// Steam master server (server browser) port");
-            sb.AppendLine("+set net_masterServerPort 27016");
-            sb.AppendLine();
-            sb.AppendLine("// Toggle voting for [player kick/map restart/next map] (0 or 1 (default) )");
-            sb.AppendLine("+set g_allowVote 1");
-            sb.AppendLine();
-            sb.AppendLine("//    Valid game options are controlled via DSR (dedicated server recipe) specified in the DSPL.");
-            sb.AppendLine("+set sv_maprotation \"default\"");
-            sb.AppendLine();
-            sb.AppendLine();
-            sb.AppendLine();
-            sb.AppendLine("//////////////////////////////////////////////////////////");
-            sb.AppendLine("// Server.cfg-configurable settings");
-            sb.AppendLine();
-            sb.AppendLine("// Server host name. This should always be set by the server admin.");
-            sb.AppendLine("set sv_hostname \"" + ServerName + "\"");
-            sb.AppendLine();
-            sb.AppendLine("// Dedicated server play list (DSPL) specifying server map rotation.");
-            sb.AppendLine("//    Valid game options are controlled via DSR (dedicated server recipe) specified in the DSPL.");
-            sb.AppendLine("set sv_maprotation \"default\"");
-            sb.AppendLine();
-            sb.AppendLine("// Maximum number of clients that may connect to this server (range 1-18)");
-            sb.AppendLine("set sv_maxclients " + MaxClient);
-            sb.AppendLine();
-            sb.AppendLine("// Server password. If set, users will be prompted on join attempt.");
-            sb.AppendLine("set g_password \"" + ServerPassword + "\"");
-            sb.AppendLine();
-            sb.AppendLine("// Maximum number of private clients allowed on the server (range 0-18 (clamped to sv_maxclients) )");
-            sb.AppendLine("set sv_privateClients " + PrivateClients);
-            sb.AppendLine();
-            sb.AppendLine("// Password for the private slots on this server. If set, users will be prompted on join attempt.");
-            sb.AppendLine("//    Users providing this password will have access to all slots.");
-            sb.AppendLine("//    Users providing an incorrect password will have access to the (sv_maxClients - sv_privateClients) public slots.");
-            sb.AppendLine("set sv_privatePassword \"" + PrivatePassword + "\"");
-            sb.AppendLine();
-            sb.AppendLine("// Remote console password. If set, users will have access to a remote console, allowing server administration from a connected client.");
-            sb.AppendLine("set rcon_password \"" + RconPassword + "\"");
-            sb.AppendLine();
-            sb.AppendLine("// Server voice chat configuration ( 0 = \"No Chat\", 1 = \"Free Chat\", 2 = \"Team Chat\" (default) )");
-            sb.AppendLine("set sv_voice " + VoiceChat);
-            sb.AppendLine();
-            sb.AppendLine("// Toggle voting for [player kick/map restart/next map] (0 or 1 (default) )");
-            sb.AppendLine("set g_allowVote " + ToggleVoting);
-            sb.AppendLine();
-            sb.AppendLine("// Toggle allowing dead players to chat with living players (0 (default) or 1)");
-            sb.AppendLine("set g_deadChat " + DeadChat);
-            sb.AppendLine();
-            sb.AppendLine("// Time in seconds before the server will kick a user for inactivity (range 0 - 10000)");
-            sb.AppendLine("set g_inactivity " + Inactivity);
-            sb.AppendLine();
-            sb.AppendLine("// Time in seconds for a player temporary ban (on kick/tempban) (range 0 - 3600)");
-            sb.AppendLine("set sv_kickBanTime " + KickTime);
-            sb.AppendLine();
-            sb.AppendLine("// Toggle flood protection (throttling of user commands - should be enabled for non-password-protected Internet servers) (0 or 1 (default))");
-            sb.AppendLine("set sv_floodProtect 0");
-            sb.AppendLine();
-            sb.AppendLine("// Specify server visibility (1 = LAN, 2 = Internet (default) )");
-            sb.AppendLine("set dedicated " + (int)ServerVisibility);
-            sb.AppendLine();
-            sb.AppendLine("// Open game port (Steam-visible server game port)");
-            sb.AppendLine("set net_queryPort " + OpenGamePort);
-            sb.AppendLine();
-            sb.AppendLine("// Secure game port");
-            sb.AppendLine("set net_port " + SecureGamePort);
-            sb.AppendLine();
-            sb.AppendLine("// Steam authentication port");
-            sb.AppendLine("set net_authPort " + AuthPort);
-            sb.AppendLine();
-            sb.AppendLine("// Steam master server (server browser) port");
-            sb.AppendLine("set net_masterServerPort " + MasterPort);
-            sb.AppendLine();
-            if (Script.Count > 0)
+            using (StringWriter sw = new StringWriter(sb))
             {
-                sb.AppendLine("// Load Script");
-                foreach (var script in Script)
+                sw.Write(content);
+                if (scripts.Count > 0)
                 {
-                    sb.AppendLine($"loadScript {script}");
+                    foreach (var line in scripts)
+                        sw.WriteLine($"loadScript \"{line}\"");
                 }
-                sb.AppendLine();
-            }
-            if (Cammand.Count > 0)
-            {
-                sb.AppendLine("//Other Command");
-                foreach (var cmd in Cammand)
+                else
+                    sw.WriteLine("//loadScript \"MyScript.dll\"");
+                sw.WriteLine();
+                sw.WriteLine();
+                if (commands.Count > 0)
                 {
-                    sb.AppendLine(cmd);
+                    sw.WriteLine("//Other Command");
+                    foreach (var cmd in commands)
+                    {
+                        sw.WriteLine(cmd);
+                    }
                 }
-                sb.AppendLine();
+                sw.WriteLine("//map rotation");
+                sw.WriteLine("start_map_rotate");
             }
-            sb.AppendLine("//map rotation");
-            sb.AppendLine("start_map_rotate");
-            return sb.ToString();
+            File.WriteAllText(_path, sb.ToString());
         }
     }
 }

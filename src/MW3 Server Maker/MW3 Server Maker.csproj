@@ -59,11 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Default.cs" />
     <Compile Include="Utility\Convertor.cs" />
-    <Compile Include="Models\Dspl.cs" />
     <Compile Include="Utility\IniReader.cs" />
     <Compile Include="Models\Server.cs" />
-    <Compile Include="Enums\ServerType.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +127,7 @@
     <None Include="Resources\Carbon.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Default.dspl" />
     <None Include="Resources\Dome.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +194,7 @@
     <None Include="Resources\Seatown.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Server.cfg" />
     <None Include="Resources\Shipbreaker.jpg" />
   </ItemGroup>
   <ItemGroup>

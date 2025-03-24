@@ -136,6 +136,9 @@
   <data name="Carbon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Carbon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Default.dspl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Dome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dome.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -201,6 +204,9 @@
   </data>
   <data name="Seatown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Seatown.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Server" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Server.cfg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Shipbreaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Shipbreaker.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

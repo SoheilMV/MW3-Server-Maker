@@ -3,6 +3,7 @@ using MetroFramework.Forms;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,9 +13,9 @@ namespace MW3_Server_Maker
     {
         private readonly string configPath = $"{Environment.CurrentDirectory}\\config.mv";
         private readonly string commandsPath = $"{Environment.CurrentDirectory}\\commands.mv";
-        private readonly string defaultPath = $"{Environment.CurrentDirectory}\\players2\\default.dspl";
+        private readonly string defaultPath = $"{Environment.CurrentDirectory}\\players2\\Default.dspl";
 
-        private Dspl dspl = new Dspl();
+        private Default dspl;
         private string map = string.Empty;
         private string mod = string.Empty;
         private int priority;
@@ -26,6 +27,17 @@ namespace MW3_Server_Maker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dspl = new Default(defaultPath);
+            if (File.Exists(defaultPath))
+            {
+                dspl.Read();
+                foreach (var rotation in dspl.Rotations)
+                {
+                    string[] result = rotation.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    listDspl.Items.Add(new ListViewItem(new string[] { result[0].Trim(), result[1].Trim(), result[2].Trim() }));
+                }
+            }
+
             if (!File.Exists(configPath))
             {
                 cb_map.SelectedIndex = 0;
@@ -61,8 +73,8 @@ namespace MW3_Server_Maker
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
+            dspl.Rotations.Clear();
             listDspl.Items.Clear();
-            dspl = new Dspl();
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -75,22 +87,21 @@ namespace MW3_Server_Maker
         {
             if (File.Exists("TeknoMW3_Server_Launcher.exe"))
             {
-                using (StreamWriter sw = new StreamWriter(defaultPath, false))
-                {
-                    sw.Write(dspl.ToString());
-                }
+                dspl.Write();
 
                 IniReader iniReader = new IniReader(configPath);
                 iniReader.Write("Server", "MAP", cb_map.Text);
                 iniReader.Write("Server", "MOD", cb_mod.Text);
 
-                string[] commands = File.ReadAllLines(commandsPath);
                 StringBuilder arguments = new StringBuilder();
-                foreach (var command in commands)
+                if (File.Exists(commandsPath))
                 {
-                    arguments.Append($"{command} ");
+                    string[] commands = File.ReadAllLines(commandsPath);
+                    foreach (var command in commands)
+                    {
+                        arguments.Append($"{command} ");
+                    }
                 }
-
                 Process.Start("TeknoMW3_Server_Launcher.exe", arguments.ToString());
 
                 Application.Exit();
@@ -109,7 +120,8 @@ namespace MW3_Server_Maker
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MetroMessageBox.Show(this, "Coded By Soheil MV\nVersion: 3.2", "MW3 Server Maker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            MetroMessageBox.Show(this, $"Developer: Soheil MV\nGithub: https://github.com/SoheilMV\nRepository: https://github.com/SoheilMV/MW3-Server-Maker\nVersion: {version.Major}.{version.Minor}", "MW3 Server Maker", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

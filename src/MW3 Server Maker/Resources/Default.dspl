@@ -1,0 +1,120 @@
+////////////////////////////////////////
+//                Maps                //
+////////////////////////////////////////
+
+
+// # Standard Maps
+// - Seatown       =  mp_seatown
+// - Dome          =  mp_dome
+// - Arkaden       =  mp_plaza2
+// - Bakaara       =  mp_mogadishu
+// - Resistance    =  mp_paris
+// - Downturn      =  mp_exchange
+// - Bootleg       =  mp_bootleg
+// - Carbon        =  mp_carbon
+// - Hardhat       =  mp_hardhat
+// - Lockdown      =  mp_alpha
+// - Village       =  mp_village
+// - Fallen        =  mp_lambeth
+// - Outpost       =  mp_radar
+// - Interchange   =  mp_interchange
+// - Underground   =  mp_underground
+// - Mission       =  mp_bravo
+
+
+// # [DLC 1] Collection 1
+// - Piazza        =  mp_italy
+// - Liberation    =  mp_park
+// - Overwatch     =  mp_overwatch
+// - Black Box     =  mp_morningwood
+
+
+// # [DLC 2] Collection 2
+// - Sanctuary     =  mp_meteora
+// - Foundation    =  mp_cement
+// - Oasis         =  mp_qadeem
+// - Erosion       =  mp_courtyard_ss
+// - Aground       =  mp_aground_ss
+
+
+// # [DLC 3] Collection 3: Chaos Pack
+// - U-Turn        =  mp_burn_ss
+// - Vortex        =  mp_six_ss
+// - Intersection  =  mp_crosswalk_ss
+
+
+// # [DLC 4] Collection 4: Final Assault
+// - Boardwalk     =  mp_boardwalk
+// - Decommission  =  mp_shipbreaker
+// - Gulch         =  mp_moab
+// - Off shore     =  mp_roughneck
+// - Parish        =  mp_nola
+
+// # Face Off
+// - Erosion       =  DLC 2
+// - Aground       =  DLC 2
+// - U-Turn        =  DLC 3
+// - Vortex        =  DLC 3
+// - Intersection  =  DLC 3
+// - Lookout       =  mp_restrepo_ss
+// - Getaway       =  mp_hillside_ss
+
+
+// # Free
+// - Erosion       =  DLC 2
+// - Aground       =  DLC 2
+// - Terminal      =  mp_terminal_cls
+
+
+
+
+
+//////////////////////////////////////////
+//              Game Modes              //
+//////////////////////////////////////////
+
+
+// # Warning
+// - Replace "XXX" with "Core" or "Hardcore".
+//   * "Core" is Default and "Hardcore" is Hardcore.
+// - Don't forget that the .dsr files are game modes (with their settings), if you don't have a file named "Example.dsr" you shouldn't put "Example" in the rotation.
+// - The section "Players" is just informative, you are not forced to have 4 players minimum and 8 maximum (4 - 8).
+
+
+// # Standard
+// - Free For All        =  FFA-XXX   -  Players: 4 - 8
+// - Team Deathmatch     =  TDM-XXX   -  Players: 8 - 12
+// - Search and Destroy  =  SD-XXX    -  Players: 8 - 12
+// - Sabotage            =  SAB-XXX   -  Players: 8 - 12
+// - Domination          =  DOM-XXX   -  Players: 8 - 12
+// - Headquarters        =  HQ-XXX    -  Players: 8 - 12
+// - Capture The Flag    =  CTF-XXX   -  Players: 8 - 12
+// - Demolition          =  DD-XXX    -  Players: 8 - 12
+// - Kill Confirmed      =  KC-XXX    -  Players: 8 - 12
+// - Team Defender       =  TDEF-XXX  -  Players: 8 - 12
+
+
+// # Alternative
+// - Drop Zone           =  DZ-XXX    -  Players: Without Information
+// - Team Juggernaut     =  TJ-XXX    -  Players: Without Information
+// - Juggernaut          =  JUG-XXX   -  Players: Without Information
+// - Gun Game            =  GG-XXX    -  Players: Without Information
+// - Infected            =  INF-XXX   -  Players: Without Information
+// - One In The Chamber  =  OIC-XXX   -  Players: Without Information
+
+
+
+
+
+////////////////////////////////////////
+//              Rotation              //
+////////////////////////////////////////
+
+
+// # Formatting is like this
+// - <Map Name>, <Game Mode.dsr>, <Probability>
+// - Random Map (Includes DLC Maps): *
+// - Probability: 1 - 1000
+// - You can only put up to 16 maps maximum!
+
+

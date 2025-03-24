@@ -296,7 +296,7 @@ namespace MW3_Server_Maker
                 return Properties.Resources.Vortex;
             else if (map == MapType.Terminal)
                 return Properties.Resources.Terminal;
-            else //if (map == MapType.Village)
+            else
                 return Properties.Resources.Village;
         }
 
@@ -326,7 +326,7 @@ namespace MW3_Server_Maker
                 return 800;
             else if (priority == "900")
                 return 900;
-            else //if (priority == "1000")
+            else
                 return 1000;
         }
 
